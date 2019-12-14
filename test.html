@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>实现Promise源码</title>
+</head>
+
+<body>
+  <script src="promise_class.js"></script>
+  <script>
+    // let p = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve(10)
+    //   }, 100);
+    // }).then(value=>{
+    //   console.log("onResolved1",value)
+    //   throw 3
+    // },reason=>console.log("onRejected1",reason))
+    // .then(value=>console.log("onResolved2",value),reason=>console.log("onRejected2",reason))
+
+    const p1 = Promise.resolve(2)
+    const p2 = Promise.resolve(Promise.resolve(3))
+    const p3 = Promise.resolve(Promise.resolve(4))
+    // p1.then(v=>console.log('p1',v))
+    // p2.then(v=>console.log('p2',v))
+    // p3.catch(v=>console.log('p3',v))
+    const pall = Promise.all([p3, p2, p1])
+    pall.then(values=>{
+      console.log(values)
+    },reason=>{
+      console.log(reason);
+      
+    })
+
+  </script>
+</body>
+
+</html>
